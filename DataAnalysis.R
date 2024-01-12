@@ -70,3 +70,45 @@ Housing |>
   ggplot(aes(x = price_level)) +
   geom_bar(aes(fill = guestroom))
 
+
+#Lets try some animation!!!!
+install.packages("gganimate")
+install.packages("gifski")
+
+library(gganimate)
+
+price_air_graph <- Housing |> 
+  ggplot(aes(x = airconditioning, fill = airconditioning)) +
+  geom_bar()
+
+price_air_graph
+
+price_air_graph <- Housing |> 
+  ggplot(aes(x = airconditioning, fill = airconditioning)) +
+  geom_bar() +
+  theme_bw()
+
+price_air_graph.animation <- price_air_graph +
+  # gganimate specific bits:
+  transition_time(
+    as.integer(price_level)) +
+  labs(title = "Price Level: {frame_time}", caption= "Price Level 1: <$3430000 \n Price Level 2: $3430000 - $4340000 \n Price Level 3: $4340000 - $5740000 \n Price Level 4: $5740000+ ") +
+  theme(plot.caption.position = "plot",
+        plot.caption = element_text(hjust = 0))+
+  ease_aes('sine-in-out')
+
+animate(price_air_graph.animation,
+        height = 500,
+        width = 800,
+        fps = 30,
+        duration = 10,
+        end_pause = 60,
+        res = 100,
+        renderer = gifski_renderer())
+
+
+
+
+
+
+
