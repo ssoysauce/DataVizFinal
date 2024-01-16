@@ -72,8 +72,8 @@ Housing |>
 
 
 #Lets try some animation!!!!
-install.packages("gganimate")
-install.packages("gifski")
+#install.packages("gganimate")
+#install.packages("gifski")
 
 library(gganimate)
 
@@ -97,7 +97,7 @@ price_air_graph.animation <- price_air_graph +
         plot.caption = element_text(hjust = 0))+
   ease_aes('sine-in-out')
 
-animate(price_air_graph.animation,
+p <- animate(price_air_graph.animation,
         height = 500,
         width = 800,
         fps = 30,
@@ -106,9 +106,175 @@ animate(price_air_graph.animation,
         res = 100,
         renderer = gifski_renderer())
 
+anim_save("price-air-graph.gif", p)
+
+# Success. Updating previous graphs to be animations as well so I can put them
+# all one page and have it be cool.
+
+price_furnish_graph <- Housing |> 
+  ggplot(aes(x = furnishingstatus, fill = furnishingstatus)) +
+  geom_bar() +
+  theme_bw()
+
+price_furnish_graph.animation <- price_furnish_graph +
+  # gganimate specific bits:
+  transition_time(
+    as.integer(price_level)) +
+  labs(x = "Furnished") +
+  theme(plot.caption.position = "plot",
+        plot.caption = element_text(hjust = 0))+
+  ease_aes('sine-in-out')
+
+p <- animate(price_furnish_graph.animation,
+             height = 500,
+             width = 800,
+             fps = 30,
+             duration = 10,
+             end_pause = 60,
+             res = 100,
+             renderer = gifski_renderer())
 
 
+anim_save("price-furnish-graph.gif", p)
+
+#hot water heating
+
+price_hotwater_graph <- Housing |> 
+  ggplot(aes(x = hotwaterheating, fill = hotwaterheating)) +
+  geom_bar() +
+  theme_bw()
+
+price_hotwater_graph.animation <- price_hotwater_graph +
+  # gganimate specific bits:
+  transition_time(
+    as.integer(price_level)) +
+  labs(x = "Hot Water Heating") +
+  theme(plot.caption.position = "plot",
+        plot.caption = element_text(hjust = 0))+
+  ease_aes('sine-in-out')
+
+p <- animate(price_hotwater_graph.animation,
+             height = 500,
+             width = 800,
+             fps = 30,
+             duration = 10,
+             end_pause = 60,
+             res = 100,
+             renderer = gifski_renderer())
 
 
+anim_save("price-hotwater-graph.gif", p)
+
+#preferred area
+
+price_prefarea_graph <- Housing |> 
+  ggplot(aes(x = prefarea, fill = prefarea)) +
+  geom_bar() +
+  theme_bw()
+
+price_prefarea_graph.animation <- price_prefarea_graph +
+  # gganimate specific bits:
+  transition_time(
+    as.integer(price_level)) +
+  labs(x = "In a Preferred Area") +
+  theme(plot.caption.position = "plot",
+        plot.caption = element_text(hjust = 0))+
+  ease_aes('sine-in-out')
+
+p <- animate(price_prefarea_graph.animation,
+             height = 500,
+             width = 800,
+             fps = 30,
+             duration = 10,
+             end_pause = 60,
+             res = 100,
+             renderer = gifski_renderer())
 
 
+anim_save("price-prefarea-graph.gif", p)
+
+# guest room
+
+price_guestroom_graph <- Housing |> 
+  ggplot(aes(x = guestroom, fill = guestroom)) +
+  geom_bar() +
+  theme_bw()
+
+price_guestroom_graph.animation <- price_guestroom_graph +
+  # gganimate specific bits:
+  transition_time(
+    as.integer(price_level)) +
+  labs(x = "Has a Guest Room") +
+  theme(plot.caption.position = "plot",
+        plot.caption = element_text(hjust = 0))+
+  ease_aes('sine-in-out')
+
+p <- animate(price_guestroom_graph.animation,
+             height = 500,
+             width = 800,
+             fps = 30,
+             duration = 10,
+             end_pause = 60,
+             res = 100,
+             renderer = gifski_renderer())
+
+
+anim_save("price-guestroom-graph.gif", p)
+
+#mainroad
+
+price_mainroad_graph <- Housing |> 
+  ggplot(aes(x = mainroad, fill = mainroad)) +
+  geom_bar() +
+  theme_bw()
+
+price_mainroad_graph.animation <- price_mainroad_graph +
+  # gganimate specific bits:
+  transition_time(
+    as.integer(price_level)) +
+  labs(x = "On a Main Road") +
+  theme(plot.caption.position = "plot",
+        plot.caption = element_text(hjust = 0))+
+  ease_aes('sine-in-out')
+
+p <- animate(price_mainroad_graph.animation,
+             height = 500,
+             width = 800,
+             fps = 30,
+             duration = 10,
+             end_pause = 60,
+             res = 100,
+             renderer = gifski_renderer())
+
+
+anim_save("price-mainroad-graph.gif", p)
+
+#basement
+
+price_basement_graph <- Housing |> 
+  ggplot(aes(x = basement, fill = basement)) +
+  geom_bar() +
+  theme_bw()
+
+price_basement_graph.animation <- price_basement_graph +
+  # gganimate specific bits:
+  transition_time(
+    as.integer(price_level)) +
+  labs(x = "Basement") +
+  theme(plot.caption.position = "plot",
+        plot.caption = element_text(hjust = 0))+
+  ease_aes('sine-in-out')
+
+p <- animate(price_basement_graph.animation,
+             height = 500,
+             width = 800,
+             fps = 30,
+             duration = 10,
+             end_pause = 60,
+             res = 100,
+             renderer = gifski_renderer())
+
+
+anim_save("price-basement-graph.gif", p)
+
+#
