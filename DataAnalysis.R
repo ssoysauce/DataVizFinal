@@ -6,7 +6,7 @@ View(Housing)
 
 summary(Housing)
 
-install.packages("janitor")
+# install.packages("janitor")
 library(janitor)
 clean_names(Housing)
 
@@ -277,4 +277,13 @@ p <- animate(price_basement_graph.animation,
 
 anim_save("price-basement-graph.gif", p)
 
-#
+#Exporting Data
+write.csv(Housing, "HousingFinal.csv", row.names=TRUE)
+
+#install.packages('rgl')
+library(rgl)
+
+mycolors <- c('royalblue1', 'darkcyan', 'oldlace')
+
+Housing |> 
+  plot_ly(x = ~price_level, y = ~area, z= ~stories)
